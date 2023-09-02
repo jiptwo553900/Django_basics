@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Delete task{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>Delete task</h1>
+        <h3>Are you sure?</h3>
+
+        <form method="post">
+            {% csrf_token %}
+            <a href="{% url 'todo_list' %}" class="btn btn-danger">Cancel</a>
+            <button class="btn btn-success" type="submit">Delete</button>
+        </form>
+    </div>
+{% endblock %}

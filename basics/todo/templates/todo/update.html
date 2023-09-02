@@ -1,0 +1,18 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Update task{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>TODO edit task</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title }}
+            <p>{{ form.is_complete }} COMPLETE</p>
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+
+    </div>
+{% endblock %}
+

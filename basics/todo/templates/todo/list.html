@@ -1,0 +1,36 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}TODO{% endblock %}
+
+{% block content %}
+    <div class="features">
+        <h1>TODO</h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.title }}<br>
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+
+        <div class="todo-list">
+            {% if tasks %}
+                {% for task in tasks %}
+                    <p>
+                        {% if task.is_complete == True %}
+                            <strike>{{task.title}}</strike>
+                        {% else %}
+                            {{task.title}}
+                        {% endif %}
+
+                        <a href="{% url 'todo_update' task.id %}" class="btn btn-info">Edit</a>
+                        <a href="{% url 'todo_delete' task.id %}" class="btn btn-danger">Delete</a>
+                    </p>
+                {% endfor %}
+            {% else %}
+                <p>No tasks for now.</p>
+            {% endif %}
+        </div>
+
+    </div>
+{% endblock %}
+
